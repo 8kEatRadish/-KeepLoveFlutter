@@ -1,10 +1,13 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/indexPage.dart';
-import 'pages/pinsPage.dart';
-import 'pages/bookPage.dart';
-import 'pages/reposPage.dart';
-import 'pages/activityPage.dart';
+import 'pages/index_page.dart';
+import 'pages/pins_page.dart';
+import 'pages/book_page.dart';
+import 'pages/repos_page.dart';
+import 'pages/activity_page.dart';
+import 'routers/routes.dart';
+import 'routers/application.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,9 +49,13 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin{
   TabController _tabController;
   @override
   Widget build(BuildContext context) {
+    final router = new Router();
+    Routes.configureRoutes(router);
+    Application.router = router;
     // TODO: implement build
     return Container(
       child: MaterialApp(
+        onGenerateRoute: Application.router.generator,
         theme: ThemeData(primaryColor: const Color.fromRGBO(77, 145, 253, 1.0)),
         home: Scaffold(
           appBar: AppBar(

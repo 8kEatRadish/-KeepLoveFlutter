@@ -1,5 +1,5 @@
 import 'dart:convert';
-import '../model/indexCell.dart';
+import '../model/index_cell.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async' show Future;
 
