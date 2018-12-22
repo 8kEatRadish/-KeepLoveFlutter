@@ -1,20 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:keep_love_flutter/constants/constants.dart';
+import 'package:keep_love_flutter/widgets/load_more.dart';
 
 import '../util/data_utils.dart';
 import '../model/index_cell.dart';
 import '../widgets/index_list_cell.dart';
 import '../widgets/index_list_header.dart';
 
+const pageIndexArray = Constants.RANK_BEFORE;
+
 class IndexPage extends StatefulWidget{
   _IndexPageState createState() => _IndexPageState();
 }
 
 class _IndexPageState extends State<IndexPage>{
-  List<IndexCell> _listData;
+  List<IndexCell> _listData = new List();
+  int _pageIndex = 0;
+  Map<String, dynamic> _params = {"src": 'web', "category": "all", "limit": 20};
+  bool _isRequesting = false; //是否正在请求数据的flag
+  bool _hasMore = true;
+  ScrollController _scrollController = new ScrollController();
   getList(bool isLoadMore){
-    DataUtils.getIndexListData().then((resultList){
+    if (_isRequesting || !_hasMore) return;
+    if(!isLoadMore){
+      // reload的时候重置page
+      _pageIndex = 0;
+    }
+    _params['before'] = pageIndexArray[_pageIndex];
+    _isRequesting = true;
+    DataUtils.getIndexListData(_params).then((result){
+      _pageIndex += 1;
+      List<IndexCell> resultList = new List();
+      if(isLoadMore){
+        resultList.addAll(_listData);
+      }
+      resultList.addAll(result);
       setState(() {
         _listData = resultList;
+        _hasMore = _pageIndex < pageIndexArray.length;
+        _isRequesting = false;
       });
     });
   }
@@ -23,13 +47,33 @@ class _IndexPageState extends State<IndexPage>{
     if(index == 0){
       return IndexListHeader(false);
     }
+    if (index == _listData.length + 1) {
+      return LoadMore(_hasMore);
+    }
     return IndexListCell(cellInfo: _listData[index-1],);
+  }
+
+  //下拉刷新
+  Future<void> _onRefresh() async{
+    _listData.clear();
+    setState(() {
+      //_listData = _listData;
+      _hasMore = true;
+    });
+    getList(false);
+    return null;
   }
 
   @override
   void initState() {
     super.initState();
     getList(false);
+    _scrollController.addListener((){
+      if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
+        print('loadMore');
+        getList(true);
+      }
+    });
   }
 
   @override
@@ -41,9 +85,13 @@ class _IndexPageState extends State<IndexPage>{
         child: CircularProgressIndicator(),
       );
     }
-    return ListView.builder(
-        itemCount: _listData.length + 1,
-        itemBuilder: (context,index)=> _readerList(context, index),
+    return RefreshIndicator(
+      onRefresh: _onRefresh,
+      child: ListView.builder(
+        itemCount: _listData.length + 2,
+        itemBuilder: (context,index) => _readerList(context, index),
+        controller: _scrollController,
+      ),
     );
   }
 }
