@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:keep_love_flutter/api/api.dart';
+import 'package:keep_love_flutter/model/pins_cell.dart';
 import 'package:keep_love_flutter/util/net_utils.dart';
 
 import '../model/index_cell.dart';
@@ -22,6 +23,23 @@ class DataUtils{
       }catch (e){
         print('Something really unknown: $i');
       }
+    }
+    return resultList;
+  }
+  static Future<List<PinsCell>> getPinsListData(
+      Map<String, dynamic> params) async {
+    List<PinsCell> resultList = new List();
+    var response = await NetUtils.get(Api.PINS_LIST, params: params);
+    var responseList = response['d']['list'];
+    for (int i = 0; i < responseList.length; i++) {
+      PinsCell pinsCell;
+      try {
+        pinsCell = PinsCell.fromJson(responseList[i]);
+      } catch (e) {
+        print("error $e at $i");
+        continue;
+      }
+      resultList.add(pinsCell);
     }
 
     return resultList;
