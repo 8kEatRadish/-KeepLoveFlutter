@@ -19,7 +19,6 @@ class _PinsListCellState extends State<PinsListCell> {
   TextStyle _textStyle = TextStyle(color: Colors.black);
 
   List<Widget> _buildContent(String content) {
-    print(content);
     List<Widget> contentList = new List();
     RegExp url = new RegExp(r"((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+");
     List listString = content.split(url);
