@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../routers/application.dart';
 import 'dart:core';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PinsCellUrl extends StatelessWidget {
   final String url;
@@ -51,7 +52,10 @@ class PinsCellUrl extends StatelessWidget {
               ),
               Expanded(
                 flex: 1,
-                child: Image.network(urlPic),
+                child: new CachedNetworkImage(
+                  imageUrl: urlPic,
+                  placeholder: new CircularProgressIndicator(),
+                ),
               )
             ],
           )),

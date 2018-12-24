@@ -73,11 +73,14 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin{
           ),
           bottomNavigationBar: new Material(
             color: Theme.of(context).primaryColor,
-            child: TabBar(
-              tabs: _bottomTabs,
-              controller: _tabController,
-              indicatorColor: Colors.white,
-            ),
+            child: new Container(
+              height: 60,
+              child: TabBar(
+                tabs: _bottomTabs,
+                controller: _tabController,
+                indicatorColor: Colors.white,
+              ),
+            )
           ),
         ),
       ),

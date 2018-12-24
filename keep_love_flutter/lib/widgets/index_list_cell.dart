@@ -1,3 +1,4 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:keep_love_flutter/routers/application.dart';
 import '../model/index_cell.dart';
@@ -57,7 +58,7 @@ class IndexListCell extends StatelessWidget {
     return InkWell(
       onTap: () {
         print('跳转到详情页');
-        Application.router.navigateTo(context, "/detail?id=${Uri.encodeComponent(cellInfo.detailUrl)}&title=${Uri.encodeComponent(cellInfo.title)}");
+        Application.router.navigateTo(context, "/detail?id=${Uri.encodeComponent(cellInfo.detailUrl)}&title=${Uri.encodeComponent(cellInfo.title)}",transition: TransitionType.inFromLeft);
       },
       child: Container(
         padding: const EdgeInsets.all(10.0),

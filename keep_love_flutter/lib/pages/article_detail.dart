@@ -34,7 +34,12 @@ class _ArticleDetailState extends State<ArticleDetail>{
     return WebviewScaffold(
       url: widget.articleUrl,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            fontSize: 15,
+          ),
+        ),
       ),
       withZoom: false,
       withLocalStorage: true,

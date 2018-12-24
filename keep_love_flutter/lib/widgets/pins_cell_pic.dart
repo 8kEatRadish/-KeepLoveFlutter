@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../routers/application.dart';
 import 'dart:core';
@@ -32,8 +33,11 @@ class PinsCellPic extends StatelessWidget {
               Application.router.navigateTo(context,
                   '/swip?pics=${Uri.encodeComponent(_buildPicsStr())}&currentIndex=${i.toString()}',transition: TransitionType.fadeIn);
             },
-            child: Image.network(
-              pics[i],
+            child: new CachedNetworkImage(
+              placeholder: new Center(
+                child: new CircularProgressIndicator(),
+              ),
+              imageUrl:pics[i],
               fit: BoxFit.cover,
               height: _picHeight,
             ),
@@ -54,8 +58,11 @@ class PinsCellPic extends StatelessWidget {
                 Application.router.navigateTo(context,
                     '/swip?pics=${Uri.encodeComponent(_buildPicsStr())}&currentIndex=${(i+1).toString()}');
               },
-              child: Image.network(
-                pics[i + 1],
+              child: new CachedNetworkImage(
+                placeholder: new Center(
+                  child: new CircularProgressIndicator(),
+                ),
+                imageUrl:pics[i + 1],
                 fit: BoxFit.cover,
                 height: _picHeight,
               ),
@@ -77,8 +84,11 @@ class PinsCellPic extends StatelessWidget {
                 Application.router.navigateTo(context,
                     '/swip?pics=${Uri.encodeComponent(_buildPicsStr())}&currentIndex=${(i+2).toString()}');
               },
-              child: Image.network(
-                pics[i + 2],
+              child: new CachedNetworkImage(
+                placeholder: new Center(
+                  child: new CircularProgressIndicator(),
+                ),
+                imageUrl:pics[i + 2],
                 fit: BoxFit.cover,
                 height: _picHeight,
               ),
