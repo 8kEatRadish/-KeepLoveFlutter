@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:keep_love_flutter/pages/login.dart';
 import 'package:keep_love_flutter/pages/page_for_web.dart';
 import 'package:keep_love_flutter/pages/swip_page.dart';
 import '../pages/article_detail.dart';
@@ -26,4 +27,8 @@ Handler swipPageHandler = Handler(
       String index = params['currentIndex']?.first;
       print(pics);
       return SwipPage(pics: pics,currentIndex: index,);
+    });
+Handler loginPageHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return Login();
     });
