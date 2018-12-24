@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:keep_love_flutter/api/api.dart';
+import 'package:keep_love_flutter/model/book_cell.dart';
+import 'package:keep_love_flutter/model/book_nav.dart';
 import 'package:keep_love_flutter/model/pins_cell.dart';
 import 'package:keep_love_flutter/util/net_utils.dart';
 
@@ -40,6 +42,45 @@ class DataUtils{
         continue;
       }
       resultList.add(pinsCell);
+    }
+
+    return resultList;
+  }
+  // 获取小册导航栏
+  static Future<List<BookNav>> getBookNavData() async {
+    List<BookNav> resultList = [];
+    var response = await NetUtils.get(Api.BOOK_NAV);
+    //print(response);
+    var responseList = response['d'];
+    for (int i = 0; i < responseList.length; i++) {
+      BookNav bookNav;
+      try {
+        bookNav = BookNav.fromJson(responseList[i]);
+      } catch (e) {
+        print("error $e at $i");
+        continue;
+      }
+      resultList.add(bookNav);
+    }
+
+    return resultList;
+  }
+
+  // 获取小册
+  static Future<List<BookCell>> getBookListData(
+      Map<String, dynamic> params) async {
+    List<BookCell> resultList = new List();
+    var response = await NetUtils.get(Api.BOOK_LIST, params: params);
+    var responseList = response['d'];
+    for (int i = 0; i < responseList.length; i++) {
+      BookCell bookCell;
+      try {
+        bookCell = BookCell.fromJson(responseList[i]);
+      } catch (e) {
+        print("error $e at $i");
+        continue;
+      }
+      resultList.add(bookCell);
     }
 
     return resultList;
