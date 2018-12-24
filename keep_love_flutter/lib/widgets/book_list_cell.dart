@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../model/book_cell.dart';
 import '../util/util.dart';
@@ -28,8 +29,11 @@ class BookListCell extends StatelessWidget {
             padding: EdgeInsets.only(
               right: Util.setPercentage(0.03, context),
             ),
-            child: Image.network(
-              cellData.img,
+            child: new CachedNetworkImage(
+              placeholder: Center(
+                child: new CircularProgressIndicator(),
+              ),
+              imageUrl: cellData.img,
               width: Util.setPercentage(0.2, context),
               height: 100,
               fit: BoxFit.contain,
