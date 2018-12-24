@@ -8,4 +8,10 @@ class Api{
   static const String RANK_LIST = 'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank';
   //沸点
   static const String PINS_LIST = 'https://short-msg-ms.juejin.im/v1/pinList/recommend';
+  // 开源库
+  static const String REPOS_LIST = 'https://repo-ms.juejin.im/v1/getCustomRepos';
+
+  // 活动
+  static const String ACTIVITY_CITY = 'https://event-storage-api-ms.juejin.im/v1/getCityList';
+  static const String ACTIVITY_LIST = 'https://event-storage-api-ms.juejin.im/v2/getEventList';
 }
