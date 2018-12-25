@@ -88,6 +88,7 @@ class _IndexPageState extends State<IndexPage>{
     return RefreshIndicator(
       onRefresh: _onRefresh,
       child: ListView.builder(
+        cacheExtent: 30,
         itemCount: _listData.length + 2,
         itemBuilder: (context,index) => _readerList(context, index),
         controller: _scrollController,

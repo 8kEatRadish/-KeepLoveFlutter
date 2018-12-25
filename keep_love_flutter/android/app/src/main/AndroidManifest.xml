@@ -13,8 +13,8 @@
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
     <application
-        android:name="十元"
-        android:label="keep_love_flutter"
+        android:name="io.flutter.app.FlutterApplication"
+        android:label="十元"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

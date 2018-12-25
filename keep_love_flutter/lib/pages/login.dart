@@ -54,6 +54,7 @@ class _LoginState extends State<Login> {
           title: Text('登陆'),
         ),
         body: Scaffold(
+          resizeToAvoidBottomPadding: false,
           backgroundColor: Colors.white30,
           body: Center(
             child: Column(
