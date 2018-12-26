@@ -18,17 +18,40 @@ class _HomePage extends State<HomePage>{
           ),
         ),
       ),
-      body: Container(
-        height: 200,
-        margin: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical:  10
+      body: new Column(
+          children: <Widget>[
+            Container(
+              height: 200,
+              margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical:  10
+              ),
+              decoration: BoxDecoration(
+                  color: Color(0xff10000000),
+                  borderRadius: BorderRadius.all(Radius.circular(3.0))
+              ),
+            ),
+            RaisedButton(
+              color: Colors.red,
+              highlightColor: Colors.grey,
+              onPressed: ()=>debugPrint('lalala'),
+              child: Text(
+                'run',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            new FittedBox(
+              fit: BoxFit.contain,
+              alignment: Alignment.center,
+              child: Text('lalala'),
+            )
+          ],
         ),
-        decoration: BoxDecoration(
-          color: Color(0xff10000000),
-          borderRadius: BorderRadius.all(Radius.circular(3.0))
-        ),
-      ),
     );
   }
 }
