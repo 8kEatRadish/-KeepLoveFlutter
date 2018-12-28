@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_text/widget/first_item_widget.dart';
 
 class HomePage extends StatefulWidget{
   _HomePage createState() => _HomePage();
 }
 
 class _HomePage extends State<HomePage>{
+
+  _itemWidget(context,index){
+    switch(index){
+      case 0:return FirstItemWidget(context);
+      default:return ListTile(
+        leading: Icon(Icons.star_border),
+        title: Text('index $index'),
+        subtitle: Text('lalala'),
+        trailing: Icon(Icons.arrow_downward),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,40 +31,11 @@ class _HomePage extends State<HomePage>{
           ),
         ),
       ),
-      body: new Column(
-          children: <Widget>[
-            Container(
-              height: 200,
-              margin: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical:  10
-              ),
-              decoration: BoxDecoration(
-                  color: Color(0xff10000000),
-                  borderRadius: BorderRadius.all(Radius.circular(3.0))
-              ),
-            ),
-            RaisedButton(
-              color: Colors.red,
-              highlightColor: Colors.grey,
-              onPressed: ()=>debugPrint('lalala'),
-              child: Text(
-                'run',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            new FittedBox(
-              fit: BoxFit.contain,
-              alignment: Alignment.center,
-              child: Text('lalala'),
+      body: ListView.builder(
+              padding: const EdgeInsets.all(8.0),
+              itemCount: 20,
+              itemBuilder: (BuildContext context, int index) => _itemWidget(context, index)
             )
-          ],
-        ),
     );
   }
 }
