@@ -13,7 +13,7 @@ class IndexPage extends StatefulWidget{
   _IndexPageState createState() => _IndexPageState();
 }
 
-class _IndexPageState extends State<IndexPage>{
+class _IndexPageState extends State<IndexPage> with AutomaticKeepAliveClientMixin{
   List<IndexCell> _listData = new List();
   int _pageIndex = 0;
   Map<String, dynamic> _params = {"src": 'web', "category": "all", "limit": 20};
@@ -95,4 +95,8 @@ class _IndexPageState extends State<IndexPage>{
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

@@ -12,7 +12,7 @@ class ReposPage extends StatefulWidget {
   _ReposPageState createState() => _ReposPageState();
 }
 
-class _ReposPageState extends State<ReposPage> {
+class _ReposPageState extends State<ReposPage> with AutomaticKeepAliveClientMixin{
   List<ReposCell> _listData = <ReposCell>[];
   int _indexPage = 0;
   Map<String, dynamic> _params = {"src": 'web', "limit": 20};
@@ -82,4 +82,8 @@ class _ReposPageState extends State<ReposPage> {
       controller: _scrollController,
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

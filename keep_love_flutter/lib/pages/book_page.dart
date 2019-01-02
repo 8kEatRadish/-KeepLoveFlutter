@@ -8,7 +8,7 @@ class BookPage extends StatefulWidget {
 }
 
 class _BookPageState extends State<BookPage>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin , AutomaticKeepAliveClientMixin{
   List<BookNav> _navData = new List();
   List<Tab> _myTabs = <Tab>[
     Tab(
@@ -78,4 +78,8 @@ class _BookPageState extends State<BookPage>
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

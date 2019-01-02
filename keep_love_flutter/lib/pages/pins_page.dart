@@ -8,7 +8,7 @@ class PinsPage extends StatefulWidget{
   _PinsPageState createState() => _PinsPageState();
 }
 
-class _PinsPageState extends State<PinsPage>{
+class _PinsPageState extends State<PinsPage> with AutomaticKeepAliveClientMixin{
   List<PinsCell> _listData = new List();
 
   Map<String, dynamic> _params = {
@@ -94,4 +94,8 @@ class _PinsPageState extends State<PinsPage>{
       );
     }
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

@@ -8,7 +8,7 @@ class ActivityPage extends StatefulWidget {
 }
 
 class _ActivityPageState extends State<ActivityPage>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin ,AutomaticKeepAliveClientMixin{
   Map<String, dynamic> _params = {
     "uid": '',
     "client_id": "",
@@ -84,4 +84,8 @@ class _ActivityPageState extends State<ActivityPage>
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
