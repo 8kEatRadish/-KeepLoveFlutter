@@ -58,7 +58,7 @@ class IndexListCell extends StatelessWidget {
     return InkWell(
       onTap: () {
         print('跳转到详情页');
-        Application.router.navigateTo(context, "/detail?id=${Uri.encodeComponent(cellInfo.detailUrl)}&title=${Uri.encodeComponent(cellInfo.title)}",transition: TransitionType.inFromLeft);
+        Application.router.navigateTo(context, "/detail?id=${Uri.encodeComponent(cellInfo.detailUrl)}&title=${Uri.encodeComponent(cellInfo.title)}",transition: TransitionType.fadeIn);
       },
       child: Container(
         padding: const EdgeInsets.all(10.0),
@@ -74,15 +74,17 @@ class IndexListCell extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 9.0),
-              child: Text(
-                cellInfo.title,
-                style: TextStyle(
-                  color: Color(0xFF393C3F),
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w600,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
+              child: Hero(
+                tag: cellInfo.title,
+                child: Text(
+                  cellInfo.title,
+                  style: TextStyle(
+                    color: Color(0xFF393C3F),
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),)
             ),
             GoodAndCommentCell(cellInfo.collectionCount, cellInfo.commentCount),
             SizedBox(
