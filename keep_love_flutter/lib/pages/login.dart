@@ -76,31 +76,35 @@ class _LoginState extends State<Login> {
                         vertical: 20, horizontal: 50),
                     child: Column(
                       children: <Widget>[
-                        TextField(
-                          onTap: _notHide,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10.0),
-                            icon: Icon(Icons.person),
-                            labelText: '请输入用户名',
+                        Flexible(
+                          child:  TextField(
+                            onTap: _notHide,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(10.0),
+                              icon: Icon(Icons.person),
+                              labelText: '请输入用户名',
+                            ),
+                            onChanged: _userNameChange,
+                            autofocus: false,
                           ),
-                          onChanged: _userNameChange,
-                          autofocus: false,
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        TextField(
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10.0),
-                            icon: Icon(Icons.security),
-                            labelText: '请输入密码',
+                        Flexible(
+                          child: TextField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(10.0),
+                              icon: Icon(Icons.security),
+                              labelText: '请输入密码',
+                            ),
+                            onChanged: _passwordChange,
+                            autofocus: false,
+                            obscureText: true,
+                            onTap: _hide,
                           ),
-                          onChanged: _passwordChange,
-                          autofocus: false,
-                          obscureText: true,
-                          onTap: _hide,
                         ),
                         SizedBox(
                           height: 20,
