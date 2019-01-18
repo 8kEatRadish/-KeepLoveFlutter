@@ -1,17 +1,20 @@
 # KeepLoveFlutter
 
 #### 项目介绍
-保持一颗学习的心。
+使用Flutter仿写掘金，实现了json解析，网络通信，模拟登陆，画廊，懒加载界面等。
 
-#### 软件架构
+#### 三方库
 
+dio
 
-#### 安装教程
+fluro
 
+cupertino_icons
 
+flutter_webview_plugin
 
-#### 使用说明
+flutter_swiper
 
+cached_network_image
 
-
-#### 参与贡献
+event_bus
