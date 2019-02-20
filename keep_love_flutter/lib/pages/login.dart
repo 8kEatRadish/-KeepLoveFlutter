@@ -49,86 +49,39 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    print(isHide);
     return Scaffold(
         appBar: AppBar(
           title: Text('登陆'),
         ),
-        body: Scaffold(
-          resizeToAvoidBottomPadding: false,
-          backgroundColor: Colors.white30,
-          body: Center(
-            child: Column(
+        body: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Image.asset(isHide ? _erer_hide : _erer),
-                    Image.asset('images/logo.png'),
-                    Image.asset(isHide ? _sansan_hide : _sansan)
-                  ],
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 50),
-                    child: Column(
-                      children: <Widget>[
-                        Flexible(
-                          child:  TextField(
-                            onTap: _notHide,
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.all(10.0),
-                              icon: Icon(Icons.person),
-                              labelText: '请输入用户名',
-                            ),
-                            onChanged: _userNameChange,
-                            autofocus: false,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Flexible(
-                          child: TextField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.all(10.0),
-                              icon: Icon(Icons.security),
-                              labelText: '请输入密码',
-                            ),
-                            onChanged: _passwordChange,
-                            autofocus: false,
-                            obscureText: true,
-                            onTap: _hide,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            if (_userName != '' && _password != '') {
-                              Application.router.pop(context);
-                              ApplicationEvent.event
-                                  .fire(UserLoginEvent(_userName, _userPic));
-                            }
-                          },
-                          color: Theme.of(context).primaryColor,
-                          child: Text('登陆',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 18.0)),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
+                Image.asset(!isHide? _erer:_erer_hide,height: 100,width: 100,),
+                Image.asset('images/logo.png'),
+                Image.asset(!isHide? _sansan:_sansan_hide,height: 100,width: 100,)
               ],
             ),
-          ),
-        ));
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'shuru',
+                      contentPadding: EdgeInsets.all(10.0),
+                      icon: Icon(Icons.supervisor_account),
+                      hintText: '请输入用户名：',
+                    ),
+                    autofocus: false,
+                  )
+                ],
+              ),
+            )
+          ],
+        )
+    );
   }
 }
